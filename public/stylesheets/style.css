@@ -20,15 +20,17 @@ body {
 }
 
 #page-wrap {
-    widows: 960px;
     margin: 15px auto;
     text-align: left;
+    
 }
 
 #cabecera {
     background: #FFFBB9;
     border: 1px solid #999999;
     padding: 20px;
+    text-align: center;
+    border-radius: 20px;
 }
 
 #menu {

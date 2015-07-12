@@ -1,53 +1,29 @@
-* {
-    margin: 0px;
-    padding: 0px;    
+
+body {
+    background: #999;
 }
 
-h1 {
-    font: bold 20px Verdana, sans-serif
+#page-wrap:after {
+    content: "Wide layout"
 }
 
-h2 {
-    font: bold 14px Verdana, sans-serif
+nav {
+    float: left;
+    width: 15%;
+    height: 200px;
 }
 
-header, nav, section, footer {
+section {
+    float: right;
+    width: 80%;
+    height: 200px;
+}
+#menu li {
     display: block;
 }
 
-body {
-    text-align: center;
-}
-
-#page-wrap {
-    widows: 960px;
-    margin: 15px auto;
-    text-align: left;
-}
-
-#cabecera {
-    background: #FFFBB9;
-    border: 1px solid #999999;
-    padding: 20px;
-}
-
-#menu {
-    background: #CCCCCC;
-    padding: 5px 15px;
-}
-#menu li {
-    display: inline-block;
-    list-style: none;
-    padding: 5px;
-    font: bold 14px verdana, sans-serif;
-}
-
 #pie {
-    text-align: center;
-    padding: 20px;
-    border-top: 2px solid #999999;
+    clear: both;
+    display: block;
 }
 
-a {
-  color: #00B7FF;
-}
