@@ -50,10 +50,17 @@ body {
 
 #pie {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     border-top: 2px solid black;
 }
 
-a {
-  color: #00B7FF;
+#quizinfo {
+    display: inline-block;
+    float: left
 }
+
+#github {
+    display: inline-block;
+    float: right;
+}
+

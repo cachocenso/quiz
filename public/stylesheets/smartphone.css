@@ -14,3 +14,7 @@ footer, input {
 #page-wrap {
     width: 100%;
 }
+
+a {
+    color: aqua;
+}
