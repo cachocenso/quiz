@@ -47,3 +47,9 @@ exports.answer = function(req, res) {
         }
     });
 }
+
+
+//GET /quizes/search
+exports.search = function(req, res) {
+    res.render('quizes/search');
+}
