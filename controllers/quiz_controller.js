@@ -23,9 +23,18 @@ exports.author = function(req, res) {
 
 // GET /quizes
 exports.index = function(req, res) {
-    models.Quiz.findAll().then(function(quizes) {
-        res.render('quizes/index', {quizes: quizes});
-    }); 
+    
+    if (req.query.search) {
+        console.log("buscando: " + req.query.search); 
+        models.Quiz.findAll({where: ["pregunta like ?", "%"+req.query.search.replace(" ", "%")+"%"]}).then(function(quizes) {
+            res.render('quizes/index', {quizes: quizes});
+        }); 
+    }
+    else {
+        models.Quiz.findAll().then(function(quizes) {
+            res.render('quizes/index', {quizes: quizes});
+        }); 
+    }
 }
 
 
