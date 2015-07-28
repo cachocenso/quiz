@@ -23,10 +23,11 @@ exports.author = function(req, res) {
 
 // GET /quizes
 exports.index = function(req, res) {
-    
+    // Si existe el parámetro search en la query string
+    //se hace la búsqueda en la BD.
     if (req.query.search) {
         console.log("buscando: " + req.query.search); 
-        models.Quiz.findAll({where: ["pregunta like ?", "%"+req.query.search.replace(" ", "%")+"%"]}).then(function(quizes) {
+        models.Quiz.findAll({where: ["pregunta like ?", "%"+req.query.search.replace(" ", "%")+"%"], order: [["pregunta", "ASC"]]}).then(function(quizes) {
             res.render('quizes/index', {quizes: quizes});
         }); 
     }
