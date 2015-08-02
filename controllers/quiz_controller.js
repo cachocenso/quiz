@@ -143,3 +143,13 @@ exports.update = function(req, res) {
     }
 
 }
+
+
+// DELETE /quizes/:quizId
+exports.delete = function(req, res) {
+    req.quiz.destroy().then(function() {
+        res.redirect('/quizes');
+    }).catch(function(er) {
+        next(err);
+    });
+}
