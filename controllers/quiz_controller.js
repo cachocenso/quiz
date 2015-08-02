@@ -63,3 +63,9 @@ exports.answer = function(req, res) {
 exports.search = function(req, res) {
     res.render('quizes/search');
 }
+
+//GET /quizes/new
+exports.new = function(req, res) {
+    var quiz = models.Quiz.build({pregunta:"Pregunta", respuesta: "Respuesta"});
+    res.render('quizes/new', {quiz:quiz});    
+}
