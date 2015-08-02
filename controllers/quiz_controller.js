@@ -116,6 +116,7 @@ exports.update = function(req, res) {
     console.log(">>>>>>>>>>>>>>>>>> " + JSON.stringify(req.body.quiz) + " <<<<<<<<<<<<<<<<<<<<<<<");
     req.quiz.pregunta = req.body.quiz.pregunta;
     req.quiz.respuesta = req.body.quiz.respuesta;
+    req.quiz.tema = req.body.quiz.tema;
     
     var err = req.quiz.validate();
     

@@ -15,6 +15,10 @@ module.exports = function(sequelize, DataTypes) {
                                                             msg: "ERROR: La respuestaes obligatoria"
                                                         }
                                                     }
-                                                }
+                                                },
+                                     tema: {
+                                         type: DataTypes.STRING,
+                                         defaultValue: 'otro'
+                                     }
                                     });
 }
