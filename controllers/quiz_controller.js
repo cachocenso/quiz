@@ -58,6 +58,11 @@ exports.answer = function(req, res) {
     });
 }
 
+// GET /quizes/:id/edit
+exports.edit = function(req, res) {
+        res.render('quizes/edit', {quiz: req.quiz, errors: []});
+}
+
 
 //GET /quizes/search
 exports.search = function(req, res) {
@@ -102,4 +107,39 @@ exports.create = function(req, res) {
             res.redirect('/quizes');
         });
     }
+}
+
+// PUT /quizes/:quizId
+exports.update = function(req, res) {
+    console.log(">>>>>>>>>>>>>>>>>> UPDATE <<<<<<<<<<<<<<<<<<<<<<<");
+    console.log(">>>>>>>>>>>>>>>>>> " + JSON.stringify(req.quiz) + " <<<<<<<<<<<<<<<<<<<<<<<");
+    console.log(">>>>>>>>>>>>>>>>>> " + JSON.stringify(req.body.quiz) + " <<<<<<<<<<<<<<<<<<<<<<<");
+    req.quiz.pregunta = req.body.quiz.pregunta;
+    req.quiz.respuesta = req.body.quiz.respuesta;
+    
+    var err = req.quiz.validate();
+    
+    if (err) {
+        console.log(err);
+        
+        var errors = [];
+        
+        if (err.pregunta) {
+            errors.push(err.pregunta);
+        }
+        
+        if (err.respuesta) {
+            errors.push(err.respuesta);
+        }
+        
+        console.log("errors: " + errors);
+        
+        res.render("quizes/edit", {quiz: req.quiz, errors: errors});
+    }
+    else {
+        req.quiz.save().then(function() {
+            res.redirect('/quizes');
+        });
+    }
+
 }
