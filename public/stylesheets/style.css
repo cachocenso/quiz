@@ -11,7 +11,7 @@ h2 {
     font: bold 14px Verdana, sans-serif
 }
 
-header, nav, section, footer {
+header, nav, section, article, footer {
     display: block;
 }
 
@@ -67,4 +67,19 @@ body {
 #ErrorMsg {
     color: #f61;
     font-size: smaller
+}
+
+
+#respuesta {
+    float: left;
+}
+
+.comment {
+    background-color: azure;
+    text-align: left;
+    font-style: italic;
+    font-size: small;
+    border: 1px solid #888888;
+    border-radius: 10px;
+    margin: 5px;
 }
