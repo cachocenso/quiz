@@ -14,6 +14,7 @@ var session = require('express-session');
 
 var app = express();
 
+var limite = 2 * 60 * 1000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Helpers dinamicos:
 app.use(function (req, res, next) {
-
   // si no existe lo inicializa
   if (!req.session.redir) {
     req.session.redir = '/';
@@ -44,11 +44,36 @@ app.use(function (req, res, next) {
 
   // Hacer visible req.session en las vistas
   res.locals.session = req.session;
-  console.log(">>>>> SESSION: " + JSON.stringify(res.locals.session));
   next();
 });
 
-
+// MW de autologout
+app.use(function (req, res, next) {
+  
+    if (!req.session.lastAccess) {
+        req.session.lastAccess = Date.now();
+    }
+    
+    var ahora = Date.now();
+    
+    
+    var tiempo = ahora - req.session.lastAccess;
+    
+    console.log('>>>>> Tiempo inactivo: ' + tiempo);
+    
+    if (req.session.user && tiempo > limite) {
+        // Destruir la sesión
+        delete req.session.user;
+        req.session.lastAccess = ahora;
+        // Redirigir a la página de login
+        res.redirect('/login');
+    }
+    else {
+        req.session.lastAccess = ahora;
+        next();
+    }
+});
+    
 app.use('/', routes);
 
 
