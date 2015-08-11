@@ -23,14 +23,15 @@ router.get('/quizes', quizController.index);
 // Ruta para las búsquedas
 router.get('/quizes/search', quizController.search);
 // Ruta para la creación de preguntas
-router.get('/quizes/new', quizController.new);
-router.post('/quizes/create', quizController.create);
+
+router.get('/quizes/new', sessionController.loginRequired, quizController.new);
+router.post('/quizes/create', sessionController.loginRequired, quizController.create);
 // Editar pregunta
-router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
-router.put('/quizes/:quizId(\\d+)', quizController.update);
+router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.edit);
+router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);
 
 // Borrar pregunta
-router.delete('/quizes/:quizId(\\d+)', quizController.delete);
+router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.delete);
 
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
